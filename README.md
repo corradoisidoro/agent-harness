@@ -4,6 +4,7 @@
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Tests](https://img.shields.io/badge/tests-15%20passed-brightgreen.svg)](#tests-and-lint)
 [![Ruff](https://img.shields.io/badge/ruff-passing-brightgreen.svg)](https://docs.astral.sh/ruff/)
+[![CI](https://github.com/corradoisidoro/agent-harness/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/corradoisidoro/agent-harness/actions/workflows/ci.yml)
 
 A minimal personal-assistant agent harness. It connects one OpenAI-compatible
 chat endpoint to a small set of built-in tools (workspace file access and
