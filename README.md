@@ -57,6 +57,28 @@ uv run harness.py
 
 You'll see the MCP servers connect, then a `you:` prompt.
 
+## Examples
+
+Type prompts in plain language; the agent decides which tools to use.
+
+| Ask | Demonstrates |
+| --- | --- |
+| `What files are in my workspace?` | `list_files` |
+| `Give me the contents of notes.txt.` | `read_file` |
+| `Add a "groceries" section to notes.txt.` | `read_file` then `write_file` |
+| `Create ideas.txt with three project ideas.` | `write_file` |
+| `Remember that I prefer short bullet-point answers.` | `save_memory`, persisted to `memory.md` |
+| `What do you remember about me?` | memory is loaded into the system prompt |
+| `What is the current time?` | `time` MCP server |
+| `Summarize https://modelcontextprotocol.io/docs/2026-07-28/getting-started/intro and save it to a new file in my workspace.` | `fetch` MCP server then `write_file` |
+| `List my workspace, summarize every file, and write the result to summary.txt.` | several tools in one turn |
+| `Read does-not-exist.txt.` | a missing file returns `error: ...` to the model; the session continues |
+
+The `save_memory` row only shows up across sessions, since memory is loaded
+once at startup. MCP-backed rows need the `time` and `fetch` servers from
+`mcp_servers.json` (see [MCP servers](#mcp-servers)); the file and memory rows
+work without MCP.
+
 ## Commands
 
 | Command | Description |
