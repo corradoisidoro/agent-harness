@@ -1,7 +1,25 @@
 [project]
 name = "agent-harness"
 version = "0.1.0"
-description = "Add your description here"
+description = "A minimal personal-assistant agent harness with MCP tools, workspace file access, and persistent memory over any OpenAI-compatible endpoint."
 readme = "README.md"
 requires-python = ">=3.14"
-dependencies = []
+dependencies = [
+    "mcp>=2.3.0",
+    "openai>=3.24.0",
+    "pydantic>=2.13.5",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "ruff>=0.17.0",
+]
+
+[tool.ruff.lint]
+# BLE001 (blind `except Exception`) is ignored on purpose. The harness catches
+# broad exceptions at three boundaries where failing hard would be worse:
+#   - connect_mcp: one broken MCP server must not stop startup
+#   - call_tool:   tool failures are returned to the model as "error: ..." strings
+#   - main:        a failed turn must not end the interactive session
+ignore = ["BLE001"]
